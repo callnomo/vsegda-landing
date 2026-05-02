@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VSEgda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #F7F6F1;
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: none;
+}
+#cur { position: fixed; width: 10px; height: 10px; background: #111; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, opacity .2s; }
+#cur.big { width: 36px; height: 36px; opacity: .1; }
+
+.container { max-width: 640px; width: 100%; text-align: center; }
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(48px, 9vw, 80px);
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 24px;
+  display: inline-block;
+}
+.vse {
+  background: #E8FF47;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: #111;
+}
+.gda { color: #111; }
+
+.slogan { font-size: clamp(15px, 2.5vw, 19px); font-weight: 600; margin-bottom: 32px; color: #888; }
+.kog { color: #111; font-weight: 800; }
+.da { background: #E8FF47; padding: 0 5px; border-radius: 5px; color: #111; font-weight: 800; }
+.na { color: #aaa; margin: 0 10px; font-weight: 400; }
+
+.desc { font-size: 16px; color: #888; line-height: 1.65; margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+.email-row { display: flex; gap: 10px; max-width: 420px; margin: 0 auto 48px; }
+.e-inp { flex: 1; padding: 14px 20px; background: #fff; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 100px; font-size: 14px; font-family: 'Syne', sans-serif; color: #111; outline: none; transition: border-color .2s; }
+.e-inp:focus { border-color: #111; }
+.e-inp::placeholder { color: #aaa; }
+.e-btn { background: #111; color: #F7F6F1; border: none; padding: 14px 24px; border-radius: 100px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; transition: all .2s; white-space: nowrap; }
+.e-btn:hover { background: #E8FF47; color: #111; transform: translateY(-1px); }
+
+.features { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+.feat-chip { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 100px; padding: 8px 18px; font-size: 13px; font-weight: 500; color: #555; display: flex; align-items: center; gap: 7px; }
+
+.divider { width: 48px; height: 2px; background: #E8FF47; margin: 0 auto 28px; border-radius: 1px; }
+
+.kogda-link { font-size: 14px; color: #888; text-decoration: none; transition: color .2s; }
+.kogda-link:hover { color: #111; }
+.kogda-link strong { font-weight: 800; color: #111; }
+.kogda-link strong span { background: #E8FF47; padding: 0 5px; border-radius: 4px; }
+
+.badge { position: fixed; bottom: 32px; right: 32px; background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; padding: 12px 16px; font-size: 12px; color: #888; font-weight: 500; box-shadow: 0 8px 30px rgba(0,0,0,0.08); animation: flt 4s ease-in-out infinite; }
+@keyframes flt { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+@media (max-width: 480px) { .email-row{flex-direction:column} .badge{display:none} body{cursor:auto} #cur{display:none} }
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div class="container">
+
+  <div class="logo">
+    <span class="vse">VSE</span><span class="gda">gda</span>
+  </div>
+
+  <p class="desc">Платформа русскоязычных экспертов. Портфолио, статьи, видео, форум и сообщество — всё в одном месте.</p>
+
+  <div class="email-row">
+    <input type="email" class="e-inp" placeholder="твой@email.com" id="eInp">
+    <button class="e-btn" id="eBtn">Хочу первым</button>
+  </div>
+
+  <div class="features">
+    <div class="feat-chip">👤 Портфолио эксперта</div>
+    <div class="feat-chip">📝 Статьи и видео</div>
+    <div class="feat-chip">💬 Форум</div>
+    <div class="feat-chip">🗓 Запись через когДА</div>
+    <div class="feat-chip">🌍 Весь русскоязычный мир</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <a href="https://kogda.app" class="kogda-link">
+    Уже сейчас доступна запись → <strong>kog<span>DA</span></strong>
+  </a>
+
+</div>
+<div class="badge">🚀 Скоро запуск</div>
+
+<script>
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.feat-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+});
+document.getElementById('eBtn').addEventListener('click',()=>{
+  const i=document.getElementById('eInp'),b=document.getElementById('eBtn');
+  if(i.value.includes('@')){b.textContent='Увидимся!';b.style.background='#22C55E';b.style.color='#fff';i.value='';i.placeholder='Увидимся на VSEgda!'}
+  else{i.style.borderColor='#FF5F57';setTimeout(()=>i.style.borderColor='',1000)}
+});
+</script>
+</body>
+</html>
